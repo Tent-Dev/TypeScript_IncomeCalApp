@@ -53,12 +53,20 @@ let rl = readline.createInterface({
 function start(){
     rl.question('Please enter your Salary per months: ', (inputSalary: string) => {
         rl.question('Please enter your saving money percent per months: ', (inputSavingPercent: string) => {
-            const salary =  parseFloat(inputSalary);
-            const savingPercent = parseFloat(inputSavingPercent);
-            const calculateMoney = new CalculateMoney(salary, savingPercent);
 
-            calculateMoney.getDetail();
+            if(!inputSalary || !inputSavingPercent){
+                let message: string = '=============================================\n' +
+                                      '=        Please fill infomation             =\n' +
+                                      '=============================================';
+                console.log(message);
+                start();
+            }else{
+                const salary =  parseFloat(inputSalary);
+                const savingPercent = parseFloat(inputSavingPercent);
+                const calculateMoney = new CalculateMoney(salary, savingPercent);
 
+                calculateMoney.getDetail();
+            }
         });
     });
 }

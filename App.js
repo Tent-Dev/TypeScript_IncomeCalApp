@@ -43,10 +43,19 @@ var rl = readline.createInterface({
 function start() {
     rl.question('Please enter your Salary per months: ', function (inputSalary) {
         rl.question('Please enter your saving money percent per months: ', function (inputSavingPercent) {
-            var salary = parseFloat(inputSalary);
-            var savingPercent = parseFloat(inputSavingPercent);
-            var calculateMoney = new CalculateMoney(salary, savingPercent);
-            calculateMoney.getDetail();
+            if (!inputSalary || !inputSavingPercent) {
+                var message_1 = '=============================================\n' +
+                    '=        Please fill infomation             =\n' +
+                    '=============================================';
+                console.log(message_1);
+                start();
+            }
+            else {
+                var salary = parseFloat(inputSalary);
+                var savingPercent = parseFloat(inputSavingPercent);
+                var calculateMoney = new CalculateMoney(salary, savingPercent);
+                calculateMoney.getDetail();
+            }
         });
     });
 }
